@@ -54,22 +54,6 @@ In most cases, #1 will work fine and is way easier.
 
 * Navigate to your page or post in the Dashboard and look for the "Simple CSS" metabox.
 
-= CSS editor tips =
-
-* Ctrl-F / Cmd-F - Start searching
-
-* Ctrl-G / Cmd-G - Find next
-
-* Shift-Ctrl-G / Shift-Cmd-G - Find previous
-  
-* Shift-Ctrl-F / Cmd-Option-F - Replace
-  
-* Shift-Ctrl-R / Shift-Cmd-Option-F - Replace all
-
-* Alt-F - Persistent search (dialog doesn't autoclose, enter to find next, Shift-Enter to find previous)
-
-* Alt-G - Jump to line
-
 == Screenshots ==
 
 1. The dark theme of the CSS editor.
