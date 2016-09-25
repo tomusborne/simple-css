@@ -79,6 +79,11 @@ In most cases, #1 will work fine and is way easier.
 
 == Changelog ==
 
+= 0.4 =
+* Use browser search instead of CodeMirror dialog search
+* Don't show GeneratePress metabox if it's already activated
+* Make CSS box full height
+
 = 0.3 =
 * Add CSS metabox to add CSS on specific pages and posts
 * Adjust styling of dark theme
@@ -94,6 +99,11 @@ In most cases, #1 will work fine and is way easier.
 * Initial release
 
 == Upgrade Notice ==
+
+= 0.4 =
+* Use browser search instead of CodeMirror dialog search
+* Don't show GeneratePress metabox if it's already activated
+* Make CSS box full height
 
 = 0.3 =
 * Add CSS metabox to add CSS on specific pages and posts
