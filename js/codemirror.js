@@ -8878,7 +8878,8 @@ jQuery(function($){
 		styleActiveLine: true,
 		matchBrackets: true,
 		lineNumbers: true,
-		indentUnit: 4
+		indentUnit: 4,
+		viewportMargin: Infinity
 	});
 	
 	jQuery( '.change-theme').on('change', function() {
