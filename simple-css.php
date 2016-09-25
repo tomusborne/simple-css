@@ -46,9 +46,9 @@ function simple_css_scripts()
 	// Load codemirror javascript
 	wp_enqueue_script( 'simple-css-codemirror-js', plugin_dir_url( __FILE__ ) . 'js/codemirror.js', array( 'jquery' ), null );
 	wp_enqueue_script( 'simple-css-js', plugin_dir_url( __FILE__ ) . 'js/css.js', array( 'jquery' ), null );
-	wp_enqueue_script( 'simple-css-search', plugin_dir_url( __FILE__ ) . 'js/search.js', array( 'jquery' ), null );
-	wp_enqueue_script( 'simple-css-search-cursor', plugin_dir_url( __FILE__ ) . 'js/searchcursor.js', array( 'jquery' ), null );
-	wp_enqueue_script( 'simple-css-dialog', plugin_dir_url( __FILE__ ) . 'js/dialog.js', array( 'jquery' ), null );
+	//wp_enqueue_script( 'simple-css-search', plugin_dir_url( __FILE__ ) . 'js/search.js', array( 'jquery' ), null );
+	//wp_enqueue_script( 'simple-css-search-cursor', plugin_dir_url( __FILE__ ) . 'js/searchcursor.js', array( 'jquery' ), null );
+	//wp_enqueue_script( 'simple-css-dialog', plugin_dir_url( __FILE__ ) . 'js/dialog.js', array( 'jquery' ), null );
 
 	// Load codemirror CSS
 	wp_enqueue_style( 'simple-css-codemirror-css', plugin_dir_url( __FILE__ ) . 'css/codemirror.css', null, null );
@@ -111,7 +111,8 @@ function simple_css_editor()
 								<option value="2" <?php selected( $theme, 2 ); ?>><?php _e( 'Light','simple-css' );?></option>
 							</select>
 						</div>
-
+						
+						<?php if ( ! defined( 'GENERATE_VERSION' ) ) : ?>
 						<div class="postbox">
 							<h3 class="hndle"><span><?php _e( 'GeneratePress', 'simple-css' ); ?></span></h3>
 							<div class="inside">
@@ -119,6 +120,7 @@ function simple_css_editor()
 " target="_blank">GeneratePress</a>' ); ?></p>
 							</div>
 						</div>
+						<?php endif; ?>
 
 						<div class="postbox">
 							<h3 class="hndle"><span><?php _e( 'Customizer', 'simple-css' ); ?></span></h3>
@@ -130,34 +132,7 @@ function simple_css_editor()
 						<div class="postbox">
 							<h3 class="hndle"><span><?php _e( 'Tips', 'simple-css' ); ?></span></h3>
 							<div class="inside">
-								<p>
-									<strong>Ctrl-F / Cmd-F</strong><br />
-									<?php _e( 'Start searching', 'simple-css' ); ?>
-								<p>
-								<p>
-									<strong>Ctrl-G / Cmd-G</strong><br />
-									<?php _e( 'Find next', 'simple-css' ); ?>
-								<p>
-								<p>
-									<strong>Shift-Ctrl-G / Shift-Cmd-G</strong><br />
-									<?php _e( 'Find previous', 'simple-css' ); ?>
-								<p>
-								<p>
-									<strong>Shift-Ctrl-F / Cmd-Option-F</strong><br />
-									<?php _e( 'Replace', 'simple-css' ); ?>
-								<p>
-								<p>
-									<strong>Shift-Ctrl-R / Shift-Cmd-Option-F</strong><br />
-									<?php _e( 'Replace all', 'simple-css' ); ?>
-								<p>
-								<p>
-									<strong>Alt-F</strong><br />
-									<?php _e( 'Persistent search (dialog does not autoclose, enter to find next, Shift-Enter to find previous)', 'simple-css' ); ?>
-								<p>
-								<p>
-									<strong>Alt-G</strong><br />
-									<?php _e( 'Jump to line', 'simple-css' ); ?>
-								<p>
+								<p><?php _e( 'Simple CSS should not be used for huge documents. If your CSS is larger than 1000 lines, you should consider using a child theme.', 'simple-css' ); ?></p>
 							</div>
 						</div>
 					</div>
