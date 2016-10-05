@@ -3,7 +3,7 @@
 Plugin Name: Simple CSS
 Plugin URI: https://generatepress.com
 Description: Simply add CSS to your WordPress site using an awesome CSS editor or the live Customizer.
-Version: 0.3
+Version: 0.4
 Author: Tom Usborne
 Author URI: http://edge22.com
 License: GNU General Public License v2 or later
@@ -113,13 +113,12 @@ function simple_css_editor()
 						</div>
 						
 						<?php if ( ! defined( 'GENERATE_VERSION' ) ) : ?>
-						<div class="postbox">
-							<h3 class="hndle"><span><?php _e( 'GeneratePress', 'simple-css' ); ?></span></h3>
-							<div class="inside">
-								<p><?php printf( __( 'Check out our free WordPress theme, %s.', 'simple-css' ), '<a href="https://generatepress.com/?utm_source=simplecss&utm_medium=plugin&utm_campaign=Simple%20CSS
-" target="_blank">GeneratePress</a>' ); ?></p>
+							<div class="postbox">
+								<h3 class="hndle"><span><?php _e( 'GeneratePress', 'simple-css' ); ?></span></h3>
+								<div class="inside">
+									<p><?php printf( __( 'Check out our free WordPress theme, %s.', 'simple-css' ), '<a href="https://generatepress.com" target="_blank">GeneratePress</a>' ); ?></p>
+								</div>
 							</div>
-						</div>
 						<?php endif; ?>
 
 						<div class="postbox">
