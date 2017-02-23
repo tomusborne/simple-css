@@ -46,9 +46,6 @@ function simple_css_scripts()
 	// Load codemirror javascript
 	wp_enqueue_script( 'simple-css-codemirror-js', plugin_dir_url( __FILE__ ) . 'js/codemirror.js', array( 'jquery' ), null );
 	wp_enqueue_script( 'simple-css-js', plugin_dir_url( __FILE__ ) . 'js/css.js', array( 'jquery' ), null );
-	//wp_enqueue_script( 'simple-css-search', plugin_dir_url( __FILE__ ) . 'js/search.js', array( 'jquery' ), null );
-	//wp_enqueue_script( 'simple-css-search-cursor', plugin_dir_url( __FILE__ ) . 'js/searchcursor.js', array( 'jquery' ), null );
-	//wp_enqueue_script( 'simple-css-dialog', plugin_dir_url( __FILE__ ) . 'js/dialog.js', array( 'jquery' ), null );
 
 	// Load codemirror CSS
 	wp_enqueue_style( 'simple-css-codemirror-css', plugin_dir_url( __FILE__ ) . 'css/codemirror.css', null, null );
