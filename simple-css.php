@@ -275,6 +275,7 @@ function simple_css_save_metabox($post_id)
 	// Checks for input and saves if needed
 	if ( isset( $_POST[ '_simple_css' ] ) && $_POST[ '_simple_css' ] !== '' ) {
 		$css = wp_kses( $_POST[ '_simple_css' ], array( '\'', '\"', '>', '+' ) );
+		$css = str_replace( '&gt;', '>', $css );
 		update_post_meta( $post_id, '_simple_css', $css );
 	} else {
 		delete_post_meta( $post_id, '_simple_css' );
