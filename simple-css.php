@@ -224,7 +224,8 @@ function simple_css_metabox()
 	if ( ! current_user_can( $allowed ) )
 		return;
 		
-	$post_types = get_post_types();
+	$args = array( 'public' => true );
+	$post_types = get_post_types( $args );
 	foreach ($post_types as $type) {
 		add_meta_box
 		(  
