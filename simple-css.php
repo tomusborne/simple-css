@@ -3,7 +3,7 @@
 Plugin Name: Simple CSS
 Plugin URI: https://generatepress.com
 Description: Simply add CSS to your WordPress site using an awesome CSS editor or the live Customizer.
-Version: 1.0
+Version: 1.1
 Author: Tom Usborne
 Author URI: https://tomusborne.com
 License: GNU General Public License v2 or later
@@ -296,7 +296,7 @@ function simple_css_save_metabox( $post_id ) {
 	}
 
 	if ( isset( $_POST[ '_simple_css' ] ) && $_POST[ '_simple_css' ] !== '' ) {
-		update_post_meta( $post_id, '_simple_css', strip_tags( $css ) );
+		update_post_meta( $post_id, '_simple_css', strip_tags( $_POST[ '_simple_css' ] ) );
 	} else {
 		delete_post_meta( $post_id, '_simple_css' );
 	}

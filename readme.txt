@@ -4,7 +4,7 @@ Donate link: https://generatepress.com/ongoing-development
 Tags: CSS, custom CSS, Simple CSS, Simple Custom CSS, CSS Customizer, CSS metabox, CSS specific page
 Requires at least: 4.0
 Tested up to: 4.8.1
-Stable tag: 1.0
+Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -63,6 +63,9 @@ In most cases, #1 will work fine and is way easier.
 
 == Changelog ==
 
+= 1.1 =
+* Fix meta box saving issue
+
 = 1.0 =
 * Show metabox only on public post types
 * Add live preview to Customizer
@@ -89,6 +92,9 @@ In most cases, #1 will work fine and is way easier.
 * Initial release
 
 == Upgrade Notice ==
+
+= 1.1 =
+* Fix meta box saving issue
 
 = 1.0 =
 * Show metabox only on public post types
