@@ -171,13 +171,15 @@ function simple_css_customize( $wp_customize ) {
 		)
 	);
 
-	$wp_customize->add_control( 
-		new Simple_CSS_Editor( $wp_customize, 'simple_css',
-		array(
-			'section'  => 'simple_css_section',
-			'settings' => 'simple_css[css]'
+	$wp_customize->add_control(
+		new Simple_CSS_Editor( 
+			$wp_customize, 'simple_css',
+			array(
+				'section'  => 'simple_css_section',
+				'settings' => 'simple_css[css]'
+			)
 		)
-	) );
+	);
 }
 
 add_action( 'customize_preview_init', 'simple_css_live_preview' );
