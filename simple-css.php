@@ -3,9 +3,9 @@
 Plugin Name: Simple CSS
 Plugin URI: https://generatepress.com
 Description: Simply add CSS to your WordPress site using an awesome CSS editor or the live Customizer.
-Version: 0.4
+Version: 1.0
 Author: Tom Usborne
-Author URI: http://edge22.com
+Author URI: https://tomusborne.com
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
@@ -184,7 +184,7 @@ add_action( 'customize_preview_init', 'simple_css_live_preview' );
 /**
  * Add our live preview.
  *
- * @since 0.1
+ * @since 1.0
  */
 function simple_css_live_preview() {
 	wp_enqueue_script( 'simple-css-live-preview', trailingslashit( plugin_dir_url( __FILE__ ) ) . 'js/live-preview.js', array( 'customize-preview' ), null, true );
@@ -193,7 +193,7 @@ function simple_css_live_preview() {
 /**
  * Strip HTML from our CSS.
  *
- * @since 0.1
+ * @since 1.0
  *
  * @param $input Our initial CSS.
  */
