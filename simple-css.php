@@ -172,6 +172,7 @@ function simple_css_customize( $wp_customize )
 			'type'              => 'option',
 			'capability'        => 'edit_theme_options',
 			'sanitize_callback' => 'wp_kses',
+			'transport'			=> 'postMessage',
 		)
 	);
 
