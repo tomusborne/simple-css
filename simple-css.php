@@ -180,7 +180,16 @@ function simple_css_customize( $wp_customize ) {
 	) );
 }
 
-add_action( 'wp_head','simple_css_generate' );
+add_action( 'customize_preview_init', 'simple_css_live_preview' );
+/**
+ * Add our live preview.
+ *
+ * @since 0.1
+ */
+function simple_css_live_preview() {
+	wp_enqueue_script( 'simple-css-live-preview', trailingslashit( plugin_dir_url( __FILE__ ) ) . 'js/live-preview.js', array( 'customize-preview' ), null, true );
+}
+
 /**
  * Strip HTML from our CSS.
  *
@@ -192,6 +201,7 @@ function simple_css_sanitize_css( $input ) {
 	return strip_tags( $input );
 }
 
+add_action( 'wp_head', 'simple_css_generate' );
 /**
  * Generate the CSS in the wp_head hook.
  *
