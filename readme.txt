@@ -96,9 +96,6 @@ In most cases, #1 will work fine and is way easier.
 * Code cleanup
 * Better sanitizing/validation
 
-= 0.5 =
-* Show metabox only on public post types
-
 = 0.4 =
 * Use browser search instead of CodeMirror dialog search
 * Don't show GeneratePress metabox if it's already activated
