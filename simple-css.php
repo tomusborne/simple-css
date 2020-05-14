@@ -1,17 +1,22 @@
 <?php
-/*
-Plugin Name: Simple CSS
-Plugin URI: https://generatepress.com
-Description: Simply add CSS to your WordPress site using an awesome CSS editor or the live Customizer.
-Version: 1.1
-Author: Tom Usborne
-Author URI: https://tomusborne.com
-License: GNU General Public License v2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
-*/
+/**
+ * Plugin Name: Simple CSS
+ * Plugin URI: https://generatepress.com
+ * Description: Simply add CSS to your WordPress site using an awesome CSS editor or the live Customizer.
+ * Version: 1.1
+ * Author: Tom Usborne
+ * Author URI: https://tomusborne.com
+ * License: GNU General Public License v2 or later
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.html
+ *
+ * @package Simple CSS
+ */
 
-// Exit if accessed directly
-if ( ! defined( 'ABSPATH' ) ) exit;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
+define( 'SIMPLE_CSS_VERSION', '1.1' );
 
 add_action( 'admin_menu', 'simple_css_admin_menu' );
 /**
@@ -32,7 +37,7 @@ function simple_css_admin_menu() {
 		return;
 	}
 
-    add_action( 'load-' . $setting, 'simple_css_scripts' );
+	add_action( 'load-' . $setting, 'simple_css_scripts' );
 }
 
 /**
@@ -68,18 +73,18 @@ function simple_css_register_setting() {
  * @since 0.1
  */
 function simple_css_editor() {
-	$options    = get_option( 'simple_css' );
-	$css = isset( $options['css'] ) ? strip_tags( $options['css'] ) : '';
+	$options = get_option( 'simple_css' );
+	$css = isset( $options['css'] ) ? $options['css'] : '';
 	$theme = isset( $options['theme'] ) ? $options['theme'] : '';
 
-	if ( '' == $theme ) {
+	if ( '' === $theme ) {
 		$theme = 1;
 	}
 
-	if ( 1 == $theme ) {
-		$theme_name = 'ambiance';
+	if ( 1 == $theme ) { // phpcs:ignore WordPress.PHP.StrictComparisons.LooseComparison
+		$theme_name = 'dark';
 	} else {
-		$theme_name = 'default';
+		$theme_name = 'light';
 	}
 	?>
 
@@ -89,8 +94,9 @@ function simple_css_editor() {
 			<form action="options.php" method="post">
 				<div id="post-body-content">
 					<?php settings_fields( 'simple_css' ); ?>
-					<div class="simple-css-container" data-theme="<?php echo $theme_name; ?>">
-						<textarea name="simple_css[css]" id="simple-css-textarea"><?php echo $css; ?></textarea>
+					<div id="simple-css" class="simple-css-container" data-theme="<?php echo esc_html( $theme_name ); ?>">
+						<textarea name="simple_css[css]" id="simple-css-textarea" style="display: none;"><?php echo wp_strip_all_tags( $css ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_strip_all_tags escapes the CSS. ?></textarea>
+						<div id="simple-css-editor"></div>
 					</div>
 				</div>
 
@@ -100,31 +106,51 @@ function simple_css_editor() {
 
 						<div class="color-theme">
 							<select class="change-theme" name="simple_css[theme]" id="simple_css[theme]">
-								<option value="1" <?php selected( $theme, 1 ); ?>><?php _e( 'Dark','simple-css' );?></option>
-								<option value="2" <?php selected( $theme, 2 ); ?>><?php _e( 'Light','simple-css' );?></option>
+								<option value="1" <?php selected( $theme, 1 ); ?>><?php esc_attr_e( 'Dark', 'simple-css' ); ?></option>
+								<option value="2" <?php selected( $theme, 2 ); ?>><?php esc_attr_e( 'Light', 'simple-css' ); ?></option>
 							</select>
 						</div>
 
 						<?php if ( ! defined( 'GENERATE_VERSION' ) ) : ?>
 							<div class="postbox">
-								<h3 class="hndle"><span><?php _e( 'GeneratePress', 'simple-css' ); ?></span></h3>
+								<h3 class="hndle"><span><?php esc_html_e( 'GeneratePress', 'simple-css' ); ?></span></h3>
 								<div class="inside">
-									<p><?php printf( __( 'Check out our free WordPress theme, %s.', 'simple-css' ), '<a href="https://generatepress.com" target="_blank">GeneratePress</a>' ); ?></p>
+									<p>
+									<?php
+										printf(
+											/* translators: GeneratePress */
+											esc_html__( 'Check out our free WordPress theme, %s.', 'simple-css' ),
+											'<a href="https://generatepress.com" target="_blank" rel="noreferrer noopener">GeneratePress</a>'
+										);
+									?>
+									</p>
 								</div>
 							</div>
 						<?php endif; ?>
 
 						<div class="postbox">
-							<h3 class="hndle"><span><?php _e( 'Customizer', 'simple-css' ); ?></span></h3>
+							<h3 class="hndle"><span><?php esc_html_e( 'Customizer', 'simple-css' ); ?></span></h3>
 							<div class="inside">
-								<p><?php printf( __( 'Want to live preview your CSS changes? Check out the Simple CSS textarea in the %1$sCustomize%2$s area.', 'simple-css' ), '<a href="' . esc_url( admin_url( 'customize.php' ) ) . '">', '</a>' ); ?></p>
+								<p>
+									<?php
+										printf(
+											/* translators: Customize */
+											esc_html__( 'Want to live preview your CSS changes? Check out the Simple CSS textarea in the %s area.', 'simple-css' ),
+											sprintf(
+												'<a href="%1$s">%2$s</a>',
+												esc_url( admin_url( 'customize.php' ) ),
+												esc_html__( 'Customize', 'simple-css' )
+											)
+										);
+									?>
+								</p>
 							</div>
 						</div>
 
 						<div class="postbox">
-							<h3 class="hndle"><span><?php _e( 'Tips', 'simple-css' ); ?></span></h3>
+							<h3 class="hndle"><span><?php esc_html_e( 'Tips', 'simple-css' ); ?></span></h3>
 							<div class="inside">
-								<p><?php _e( 'Simple CSS should not be used for huge documents. If your CSS is larger than 1000 lines, you should consider using a child theme.', 'simple-css' ); ?></p>
+								<p><?php esc_html_e( 'Simple CSS should not be used for huge documents. If your CSS is larger than 1000 lines, you should consider using a child theme.', 'simple-css' ); ?></p>
 							</div>
 						</div>
 					</div>
@@ -139,6 +165,7 @@ function simple_css_editor() {
  * Sanitize our saved values.
  *
  * @since 0.1
+ * @param array $input Our values to save.
  */
 function simple_css_validate( $input ) {
 	$input['css'] = strip_tags( $input['css'] );
@@ -151,32 +178,36 @@ add_action( 'customize_register', 'simple_css_customize' );
  * Create the Customizer option.
  *
  * @since 0.1
+ * @param stdClass $wp_customize The Customizer class.
  */
 function simple_css_customize( $wp_customize ) {
-	require_once( plugin_dir_path( __FILE__ ) . 'customize/css-control.php' );
+	require_once plugin_dir_path( __FILE__ ) . 'customize/css-control.php';
 
-	$wp_customize->add_section( 'simple_css_section',
+	$wp_customize->add_section(
+		'simple_css_section',
 		array(
 			'title'       => __( 'Simple CSS', 'simple-css' ),
 			'priority'    => 200,
 		)
 	);
 
-	$wp_customize->add_setting( 'simple_css[css]' ,
+	$wp_customize->add_setting(
+		'simple_css[css]',
 		array(
 			'type'              => 'option',
 			'capability'        => 'edit_theme_options',
 			'sanitize_callback' => 'simple_css_sanitize_css',
-			'transport'			=> 'postMessage',
+			'transport'         => 'postMessage',
 		)
 	);
 
 	$wp_customize->add_control(
-		new Simple_CSS_Editor( 
-			$wp_customize, 'simple_css',
+		new Simple_CSS_Editor(
+			$wp_customize,
+			'simple_css',
 			array(
 				'section'  => 'simple_css_section',
-				'settings' => 'simple_css[css]'
+				'settings' => 'simple_css[css]',
 			)
 		)
 	);
@@ -189,7 +220,13 @@ add_action( 'customize_preview_init', 'simple_css_live_preview' );
  * @since 1.0
  */
 function simple_css_live_preview() {
-	wp_enqueue_script( 'simple-css-live-preview', trailingslashit( plugin_dir_url( __FILE__ ) ) . 'js/live-preview.js', array( 'customize-preview' ), null, true );
+	wp_enqueue_script(
+		'simple-css-live-preview',
+		trailingslashit( plugin_dir_url( __FILE__ ) ) . 'js/live-preview.js',
+		array( 'customize-preview' ),
+		SIMPLE_CSS_VERSION,
+		true
+	);
 }
 
 /**
@@ -197,7 +234,7 @@ function simple_css_live_preview() {
  *
  * @since 1.0
  *
- * @param $input Our initial CSS.
+ * @param string $input Our initial CSS.
  */
 function simple_css_sanitize_css( $input ) {
 	return strip_tags( $input );
@@ -217,14 +254,13 @@ function simple_css_generate() {
 		$output .= get_post_meta( get_the_ID(), '_simple_css', true );
 	}
 
-	if ( '' == $output ) {
+	if ( '' === $output ) {
 		return;
 	}
 
 	$output = str_replace( array( "\r", "\n" ), '', $output );
 	$output = preg_replace( '/\s+/', ' ', $output );
 
-	// Finally, print it
 	echo '<style type="text/css" id="simple-css-output">';
 		echo strip_tags( $output );
 	echo '</style>';
@@ -236,27 +272,26 @@ add_action( 'add_meta_boxes', 'simple_css_metabox' );
  *
  * @since 0.1
  */
-function simple_css_metabox() {	
-	// Set user role - make filterable
+function simple_css_metabox() {
+
 	$allowed = apply_filters( 'simple_css_metabox_capability', 'activate_plugins' );
-	
-	// If not an administrator, don't show the metabox
+
 	if ( ! current_user_can( $allowed ) ) {
 		return;
 	}
 		
 	$args = array( 'public' => true );
 	$post_types = get_post_types( $args );
-	foreach ($post_types as $type) {
-		add_meta_box
-		(  
+
+	foreach ( $post_types as $type ) {
+		add_meta_box(
 			'simple_css_metabox',
-			__( 'Simple CSS','simple-css' ),
+			esc_html__( 'Simple CSS', 'simple-css' ),
 			'simple_css_show_metabox',
 			$type,
 			'normal',
 			'default'
-		); 
+		);
 	}
 }
 
@@ -265,15 +300,15 @@ function simple_css_metabox() {
  *
  * @since 0.1
  *
- * @param $post Object
+ * @param Object $post The current post.
  */
 function simple_css_show_metabox( $post ) {
 	wp_nonce_field( basename( __FILE__ ), 'simple_css_nonce' );
 	$options = get_post_meta( $post->ID );
-	$css = isset( $options[ '_simple_css' ] ) ? $options[ '_simple_css' ][0] : false;
+	$css = isset( $options['_simple_css'] ) ? $options['_simple_css'][0] : false;
 	?>
 	<p>
-		<textarea style="width:100%;height:300px;" name="_simple_css" id="simple-css-textarea"><?php echo strip_tags( $css ); ?></textarea>
+		<textarea style="width:100%;height:300px;" name="_simple_css" id="simple-css-textarea"><?php echo wp_strip_all_tags( $css ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_strip_all_tags escapes output. ?></textarea>
 	</p>
 	<?php
 }
@@ -284,19 +319,19 @@ add_action( 'save_post', 'simple_css_save_metabox' );
  *
  * @since 0.1
  *
- * @param $post_id boolean
+ * @param boolean $post_id The current post ID.
  */
 function simple_css_save_metabox( $post_id ) {
 	$is_autosave = wp_is_post_autosave( $post_id );
 	$is_revision = wp_is_post_revision( $post_id );
-	$is_valid_nonce = ( isset( $_POST[ 'simple_css_nonce' ] ) && wp_verify_nonce( $_POST[ 'simple_css_nonce' ], basename( __FILE__ ) ) ) ? true : false;
+	$is_valid_nonce = ( isset( $_POST['simple_css_nonce'] ) && wp_verify_nonce( $_POST['simple_css_nonce'], basename( __FILE__ ) ) ) ? true : false;
 
 	if ( $is_autosave || $is_revision || ! $is_valid_nonce ) {
 		return;
 	}
 
-	if ( isset( $_POST[ '_simple_css' ] ) && $_POST[ '_simple_css' ] !== '' ) {
-		update_post_meta( $post_id, '_simple_css', strip_tags( $_POST[ '_simple_css' ] ) );
+	if ( isset( $_POST['_simple_css'] ) && '' !== $_POST['_simple_css'] ) {
+		update_post_meta( $post_id, '_simple_css', wp_strip_all_tags( $_POST['_simple_css'] ) );
 	} else {
 		delete_post_meta( $post_id, '_simple_css' );
 	}
