@@ -168,7 +168,7 @@ function simple_css_editor() {
  * @param array $input Our values to save.
  */
 function simple_css_validate( $input ) {
-	$input['css'] = strip_tags( $input['css'] );
+	$input['css'] = wp_strip_all_tags( $input['css'] );
 	$input['theme'] = sanitize_text_field( $input['theme'] );
 	return $input;
 }
@@ -237,7 +237,7 @@ function simple_css_live_preview() {
  * @param string $input Our initial CSS.
  */
 function simple_css_sanitize_css( $input ) {
-	return strip_tags( $input );
+	return wp_strip_all_tags( $input );
 }
 
 add_action( 'wp_head', 'simple_css_generate' );
@@ -262,7 +262,7 @@ function simple_css_generate() {
 	$output = preg_replace( '/\s+/', ' ', $output );
 
 	echo '<style type="text/css" id="simple-css-output">';
-		echo strip_tags( $output );
+		echo wp_strip_all_tags( $output ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_strip_all_tags escapes output.
 	echo '</style>';
 }
 
