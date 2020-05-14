@@ -46,11 +46,44 @@ function simple_css_admin_menu() {
  * @since 0.1
  */
 function simple_css_scripts() {
-	wp_enqueue_script( 'simple-css-codemirror-js', plugin_dir_url( __FILE__ ) . 'js/codemirror.js', array( 'jquery' ), null );
-	wp_enqueue_script( 'simple-css-js', plugin_dir_url( __FILE__ ) . 'js/css.js', array( 'jquery' ), null );
-	wp_enqueue_style( 'simple-css-codemirror-css', plugin_dir_url( __FILE__ ) . 'css/codemirror.css', null, null );
-	wp_enqueue_style( 'simple-css-ambiance-css', plugin_dir_url( __FILE__ ) . 'css/ambiance.css', null, null );
-	wp_enqueue_style( 'simple-css', plugin_dir_url( __FILE__ ) . 'css/style.css', null, null );
+	wp_enqueue_script(
+		'simple-css-ace-js',
+		plugin_dir_url( __FILE__ ) . 'js/ace/ace.js',
+		array( 'jquery' ),
+		SIMPLE_CSS_VERSION,
+		true
+	);
+
+	wp_enqueue_script(
+		'simple-css-ace-js-nord-dark',
+		plugin_dir_url( __FILE__ ) . 'js/ace/theme-nord_dark.js',
+		array( 'jquery' ),
+		SIMPLE_CSS_VERSION,
+		true
+	);
+
+	wp_enqueue_script(
+		'simple-css-ace-js-katzenmilch',
+		plugin_dir_url( __FILE__ ) . 'js/ace/theme-katzenmilch.js',
+		array( 'jquery' ),
+		SIMPLE_CSS_VERSION,
+		true
+	);
+
+	wp_enqueue_script(
+		'simple-css-js',
+		plugin_dir_url( __FILE__ ) . 'js/init.js',
+		array( 'jquery', 'simple-css-ace-js' ),
+		SIMPLE_CSS_VERSION,
+		true
+	);
+
+	wp_enqueue_style(
+		'simple-css',
+		plugin_dir_url( __FILE__ ) . 'css/style.css',
+		null,
+		SIMPLE_CSS_VERSION
+	);
 }
 
 add_action( 'admin_init', 'simple_css_register_setting' );
