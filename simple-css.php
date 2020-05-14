@@ -283,7 +283,7 @@ function simple_css_metabox() {
 	if ( ! current_user_can( $allowed ) ) {
 		return;
 	}
-		
+
 	$args = array( 'public' => true );
 	$post_types = get_post_types( $args );
 
