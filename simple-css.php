@@ -210,8 +210,12 @@ add_action( 'wp_head', 'simple_css_generate' );
  * @since 0.1
  */
 function simple_css_generate() {
-	$options = get_option( 'simple_css' );
-	$output = $options['css'];
+	$options = get_option( 'simple_css', array() );
+	$output = '';
+
+	if ( isset( $options['css'] ) ) {
+		$output = $options['css'];
+	}
 
 	if ( is_singular() ) {
 		$output .= get_post_meta( get_the_ID(), '_simple_css', true );
