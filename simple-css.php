@@ -172,7 +172,7 @@ function simple_css_customize( $wp_customize ) {
 	);
 
 	$wp_customize->add_control(
-		new Simple_CSS_Editor( 
+		new Simple_CSS_Editor(
 			$wp_customize, 'simple_css',
 			array(
 				'section'  => 'simple_css_section',
@@ -240,27 +240,27 @@ add_action( 'add_meta_boxes', 'simple_css_metabox' );
  *
  * @since 0.1
  */
-function simple_css_metabox() {	
+function simple_css_metabox() {
 	// Set user role - make filterable
 	$allowed = apply_filters( 'simple_css_metabox_capability', 'activate_plugins' );
-	
+
 	// If not an administrator, don't show the metabox
 	if ( ! current_user_can( $allowed ) ) {
 		return;
 	}
-		
+
 	$args = array( 'public' => true );
 	$post_types = get_post_types( $args );
 	foreach ($post_types as $type) {
 		add_meta_box
-		(  
+		(
 			'simple_css_metabox',
 			__( 'Simple CSS','simple-css' ),
 			'simple_css_show_metabox',
 			$type,
 			'normal',
 			'default'
-		); 
+		);
 	}
 }
 
