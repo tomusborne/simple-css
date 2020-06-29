@@ -3,7 +3,7 @@ Contributors: edge22
 Donate link: https://generatepress.com/ongoing-development
 Tags: CSS, custom CSS, Simple CSS, Simple Custom CSS, CSS Customizer, CSS metabox, CSS specific page
 Requires at least: 4.0
-Tested up to: 4.8.1
+Tested up to: 5.4
 Stable tag: 1.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
