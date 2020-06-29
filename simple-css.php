@@ -3,7 +3,7 @@
 Plugin Name: Simple CSS
 Plugin URI: https://generatepress.com
 Description: Simply add CSS to your WordPress site using an awesome CSS editor or the live Customizer.
-Version: 1.1
+Version: 1.1.1
 Author: Tom Usborne
 Author URI: https://tomusborne.com
 License: GNU General Public License v2 or later
