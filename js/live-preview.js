@@ -4,7 +4,7 @@
 			if ( ! $( '#simple-css-output' ).length ) {
 				$( '<style id="simple-css-output"></style>' ).appendTo( 'head' );
 			}
-			
+
 			$( '#simple-css-output' ).text( newval );
 		} );
 	} );
