@@ -3,7 +3,7 @@
 Plugin Name: Simple CSS
 Plugin URI: https://generatepress.com
 Description: Simply add CSS to your WordPress site using an awesome CSS editor or the live Customizer.
-Version: 1.1
+Version: 1.1.1
 Author: Tom Usborne
 Author URI: https://tomusborne.com
 License: GNU General Public License v2 or later
@@ -172,7 +172,7 @@ function simple_css_customize( $wp_customize ) {
 	);
 
 	$wp_customize->add_control(
-		new Simple_CSS_Editor( 
+		new Simple_CSS_Editor(
 			$wp_customize, 'simple_css',
 			array(
 				'section'  => 'simple_css_section',
@@ -210,8 +210,12 @@ add_action( 'wp_head', 'simple_css_generate' );
  * @since 0.1
  */
 function simple_css_generate() {
-	$options = get_option( 'simple_css' );
-	$output = $options['css'];
+	$options = get_option( 'simple_css', array() );
+	$output = '';
+
+	if ( isset( $options['css'] ) ) {
+		$output = $options['css'];
+	}
 
 	if ( is_singular() ) {
 		$output .= get_post_meta( get_the_ID(), '_simple_css', true );
@@ -236,27 +240,27 @@ add_action( 'add_meta_boxes', 'simple_css_metabox' );
  *
  * @since 0.1
  */
-function simple_css_metabox() {	
+function simple_css_metabox() {
 	// Set user role - make filterable
 	$allowed = apply_filters( 'simple_css_metabox_capability', 'activate_plugins' );
-	
+
 	// If not an administrator, don't show the metabox
 	if ( ! current_user_can( $allowed ) ) {
 		return;
 	}
-		
+
 	$args = array( 'public' => true );
 	$post_types = get_post_types( $args );
 	foreach ($post_types as $type) {
 		add_meta_box
-		(  
+		(
 			'simple_css_metabox',
 			__( 'Simple CSS','simple-css' ),
 			'simple_css_show_metabox',
 			$type,
 			'normal',
 			'default'
-		); 
+		);
 	}
 }
 

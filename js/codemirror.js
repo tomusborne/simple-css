@@ -8881,7 +8881,7 @@ jQuery(function($){
 		indentUnit: 4,
 		viewportMargin: Infinity
 	});
-	
+
 	jQuery( '.change-theme').on('change', function() {
 		if ( 1 == jQuery(this).val() ) {
 			editor.setOption("theme", 'ambiance');
@@ -8889,5 +8889,5 @@ jQuery(function($){
 			editor.setOption("theme", 'default');
 		}
 	});
-	
+
 });

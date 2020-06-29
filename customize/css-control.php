@@ -11,5 +11,5 @@ class Simple_CSS_Editor extends WP_Customize_Control {
 			</div>
 		</label>
 	<?php }
-	
+
 }

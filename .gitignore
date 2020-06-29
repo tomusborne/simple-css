@@ -1,13 +1,8 @@
-/.wordpress-org
-/.git
-/.github
-
-.distignore
+node_modules
 .DS_Store
 .editorconfig
 .eslintignore
 .eslintrc.json
-.gitattributes
-.gitignore
 package-lock.json
 package.json
+phpcs.xml
